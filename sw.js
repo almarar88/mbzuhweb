@@ -1,0 +1,7 @@
+/* MBZUH demo service worker — offline cache (no external requests) */
+const V='mbzuh-demo-20261006181810';const CORE=["./", "index.html", "offline.html", "assets/css/fonts.css", "assets/css/site.css", "assets/js/site.js", "assets/js/fuse.min.js", "assets/js/search-index.js", "assets/img/pattern.svg", "assets/img/icons/icon-192.png"];
+self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()))});
+self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V&&k!=='mbz-saved').map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
+self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET'||new URL(r.url).origin!==location.origin)return;
+ if(r.mode==='navigate'||r.headers.get('accept','').includes('text/html')){e.respondWith(fetch(r.url,{cache:'no-cache',credentials:'same-origin'}).then(res=>{const cp=res.clone();caches.open(V).then(c=>c.put(r,cp));return res}).catch(()=>caches.match(r).then(m=>m||caches.match('offline.html'))));return}
+ e.respondWith(fetch(r).then(res=>{if(res.ok){const cp=res.clone();caches.open(V).then(c=>c.put(r,cp))}return res}).catch(()=>caches.match(r)));});

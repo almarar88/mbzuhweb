@@ -1,0 +1,44 @@
+{
+ "name": "جامعة محمد بن زايد للعلوم الإنسانية — نسخة تجريبية",
+ "short_name": "MBZUH Demo",
+ "description": "نسخة تجريبية لإعادة تصميم موقع الجامعة — ليست الموقع الرسمي",
+ "lang": "ar",
+ "dir": "rtl",
+ "start_url": "./index.html",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#fbf9f5",
+ "theme_color": "#9a6f2c",
+ "icons": [
+  {
+   "src": "assets/img/icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "assets/img/icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "assets/img/icons/maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "بوابة الطالب",
+   "url": "./student.html"
+  },
+  {
+   "name": "بوابة الموظف",
+   "url": "./staff.html"
+  },
+  {
+   "name": "مستكشف البرامج",
+   "url": "./programs.html"
+  }
+ ]
+}
