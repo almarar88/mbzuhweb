@@ -465,3 +465,16 @@ h3.h4s{font-size:1.05rem!important}
 }
 @media (min-width:1280px){.nav>ul>li{flex-shrink:0}}
 @media (min-width:1280px) and (max-width:1365.98px){.nav a.nl,.nav button.nl{padding:.45rem .4rem}}
+/* v7: header fit — nothing may clip at any width (incl. classic 15-17px scrollbars) */
+@media (min-width:1280px){
+  .hdr .container{gap:.75rem}
+  .nav{min-width:0;flex:0 1 auto}
+  .brand{flex-shrink:0}
+}
+@media (min-width:1280px) and (max-width:1599.98px){.brand img{height:44px}}
+@media (min-width:1280px) and (max-width:1365.98px){.brand img{height:40px}.hdr .tools{gap:.3rem}}
+html.hdr-t1 .nav a.nl,html.hdr-t1 .nav button.nl{padding:.4rem .3rem!important;font-size:.84rem!important}
+html.hdr-t1 .brand img{height:36px!important}
+html.hdr-t2 .hdr .tools .btn{display:none!important}
+@media (min-width:1600px){.hdr .container{width:min(100% - 2*var(--gutter),1520px)}}
+@media (min-width:1641px){.search-trigger{width:42px!important;min-width:42px!important;padding:0!important;justify-content:center}.search-trigger .lbl,.search-trigger kbd{display:none!important}.nav a.nl,.nav button.nl{padding:.55rem .7rem}}

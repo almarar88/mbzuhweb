@@ -12,7 +12,7 @@
   /* ---------- filters ---------- */
   const grid=$('#cx-grid'), cards=$$('.cx-course',grid), q=$('#cx-filter'), cnt=$('#cx-count'), emp=$('#cx-empty'), ct=$('#cx-cat-t'), cd=$('#cx-cat-d');
   let cat='', limit=0, moreBtn=null;
-  const pageSize=()=>phone()?10:18;
+  const pageSize=()=>phone()?6:8;
   function apply(resetLimit){
     if(resetLimit) limit=pageSize();
     const nq=norm(q.value); let n=0, shown=0;

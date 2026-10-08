@@ -64,6 +64,7 @@ const tr=q=>/صباح/.test(q)?'wkm':/مساء/.test(q)?'wke':/(نهايه|عط�
 const li=r=>`<li><b>${esc(r.levelAr)}</b> · ${esc(r.trackAr)}: ${esc(r.days)}، <bdi>${esc(r.start)}</bdi> – <bdi>${esc(r.end)}</bdi>، يبدأ ${esc(r.dateAr)}</li>`;
 const answer=raw=>{const q=N(raw),L=lv(q),K=tr(q);let rows=D.rows.filter(r=>(!L||r.level===L)&&(!K||(K==='wk'?r.track!=='wd':r.track===K)));const src='<small>المصدر: بوابة مركز التعليم المستمر (بيانات منسوخة 6 أكتوبر 2026)</small>';
  const catHit=D.cats.filter(c=>N(c.ar).split(/\s+/).filter(w=>w.length>3&&!['جامعه','محمد','زايد','للعلوم','الانسانيه','الانسانية'].includes(w)).some(w=>q.includes(w)));
+ if(/(نصاب|الحد الادني|الحد الأدنى|عدد المتدربين|كم متدرب|تنعقد|تعقد|اكتمال|quorum)/.test(q)){const h=T.filter(t=>/النصاب/.test(t));if(h.length)return `<b>${esc(h[0])}</b>${src}`}
  if(/(استرداد|استرجاع|الغاء|انسحاب|refund)/.test(q)){const h=T.filter(t=>/(استرداد|يسترد|يُسترد|الانسحاب|إلغاء)/.test(t));return `<b>سياسة الإلغاء والاسترداد:</b><ul>${h.slice(0,6).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>${src}`}
  if(/(شهاده|حضور|غياب)/.test(q)){const h=T.filter(t=>/(حضور|الغياب|شهادة)/.test(t));return `<ul>${h.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>${src}`}
  if(/(مستند|متطلب|اوراق|وثائق|ارفاق|شروط التسجيل)/.test(q)){const cs=catHit.length?catHit:D.cats;return `<b>المطلوب عند التسجيل حسب الفئة:</b><ul>${cs.map(c=>`<li>${esc(c.ar)}: ${c.fields.length?c.fields.map(f=>(f.type==='file'?'📎 ':'')+esc(f.ar)).join('، '):'—'}</li>`).join('')}</ul>إضافة إلى: الاسم الكامل، البريد الإلكتروني، الموبايل، الجنس، والإمارة (اختياري).${src}`}

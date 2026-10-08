@@ -160,3 +160,14 @@ if(qzone&&window.mbzShareCard){let qb=null;const hide=()=>{qb&&qb.remove();qb=nu
   if(/^welcome-/.test(here)){const h=document.createElement('p');h.className='v6-qhint';h.innerHTML='💡 حدّد أي جملة من الكلمة لتصنع منها بطاقة اقتباس قابلة للمشاركة.';(qzone.querySelector('p')||qzone).before(h)}
 }
 })();
+/* v7: header fit safety net — if nav items would touch the tools/brand, tighten; then drop the header CTA */
+(()=>{const H=document.documentElement,mq=matchMedia('(min-width:1280px)');let raf=0;
+function over(){const ul=document.querySelector('.nav>ul'),t=document.querySelector('.hdr .tools'),b=document.querySelector('.hdr .brand');if(!ul||!t||!b)return false;
+const lis=[...ul.children].map(l=>l.getBoundingClientRect()).filter(r=>r.width>0);if(!lis.length)return false;
+const L=Math.min(...lis.map(r=>r.left)),R=Math.max(...lis.map(r=>r.right)),tr=t.getBoundingClientRect(),br=b.getBoundingClientRect(),rtl=getComputedStyle(H).direction==='rtl';
+return rtl?(L<tr.right+6||R>br.left-6):(R>tr.left-6||L<br.right+6)}
+function fit(){raf=0;H.classList.remove('hdr-t1','hdr-t2');if(!mq.matches)return;if(over()){H.classList.add('hdr-t1');if(over())H.classList.add('hdr-t2')}}
+const go=()=>{if(!raf)raf=requestAnimationFrame(fit)};
+addEventListener('resize',go,{passive:true});mq.addEventListener&&mq.addEventListener('change',go);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(go);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',go);else go();addEventListener('load',go);})();
