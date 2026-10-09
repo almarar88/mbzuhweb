@@ -1,5 +1,5 @@
 /* MBZUH demo service worker — offline cache (no external requests) */
-const V='mbzuh-demo-v8-10091138';const CORE=["./", "index.html", "offline.html", "assets/css/fonts.css", "assets/css/site.css", "assets/js/site.js", "assets/js/fuse.min.js", "assets/js/search-index.js", "assets/img/pattern.svg", "assets/img/icons/icon-192.png"];
+const V='mbzuh-demo-v9-10091200';const CORE=["./", "index.html", "offline.html", "assets/css/fonts.css", "assets/css/site.css", "assets/js/site.js", "assets/js/fuse.min.js", "assets/js/search-index.js", "assets/img/pattern.svg", "assets/img/icons/icon-192.png"];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(V).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting()))});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==V&&k!=='mbz-saved').map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET'||new URL(r.url).origin!==location.origin)return;

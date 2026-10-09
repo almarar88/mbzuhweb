@@ -17,7 +17,7 @@
   /* ---------- explorer ---------- */
   const D=window.CE_SESSIONS,list=$('#ce-x-list');
   if(D&&list){
-    const st={lang:'',level:'',track:''};let limit=6;
+    const st={lang:'',level:'',track:''};let limit=3;
     const L=D.langs,LV=Object.fromEntries(D.levels),TR=Object.fromEntries(D.tracks);
     const opts={lang:[['','الكل'],...Object.entries(L).map(([k,v])=>[k,v.ar,v])],level:[['','الكل'],...D.levels],track:[['','الكل'],...D.tracks.map(([k,v])=>[k,v.replace('نهاية الأسبوع — ','نهاية الأسبوع ')])]};
     const match=(r,skip)=>Object.keys(st).every(k=>k===skip||!st[k]||r[k]===st[k]);
@@ -28,17 +28,17 @@
     const journey=()=>{const j=$('#ce-journey');if(!st.lang){j.innerHTML='<p class="ce-jr-hint">اختر لغة لترى مسارك عبر المستويات الثلاثة وتاريخ بدء كل مستوى.</p>';return}
       const tr=st.track||'wd',l=L[st.lang];const rows=D.levels.map(([k,a])=>[k,a,D.rows.find(r=>r.lang===st.lang&&r.track===tr&&r.level===k)]);
       j.innerHTML=`<div class="ce-jr" style="--lc:${l.c}"><p class="ce-jr-t">مسارك في <b>${esc(l.ar)}</b> — ${esc(TR[tr])}${st.track?'':' <small>(اختر فترة أخرى لتغيير المواعيد)</small>'}</p><ol class="ce-jr-steps">${rows.map(([k,a,r],i)=>`<li${st.level===k?' class="on"':''} style="--i:${i}"><button type="button" data-lv="${k}" aria-pressed="${st.level===k}"><i aria-hidden="true">${i+1}</i><b>${a}</b><span>${r?esc(r.dateAr):'—'}</span></button></li>`).join('')}</ol></div>`;
-      $$('[data-lv]',j).forEach(b=>b.addEventListener('click',()=>{st.level=st.level===b.dataset.lv?'':b.dataset.lv;limit=6;draw()}))};
+      $$('[data-lv]',j).forEach(b=>b.addEventListener('click',()=>{st.level=st.level===b.dataset.lv?'':b.dataset.lv;limit=3;draw()}))};
     const card=(r,i)=>{const l=L[r.lang];return `<li class="ce-xc" style="--lc:${l.c};--d:${Math.min(i,8)}"><div class="ce-xc-top"><span class="ce-xc-lang"><span lang="${l.code}" dir="auto">${esc(l.endo)}</span>${esc(l.ar)}</span><span class="ce-xc-lv">${esc(r.levelAr)}</span></div><p class="ce-xc-date"><b>${esc(r.dateAr)}</b><small>${esc(r.dateDay)} · ${when(r.date)}</small></p><ul class="ce-xc-meta"><li>${esc(r.trackAr)}</li><li>${esc(r.days)}</li><li><bdi>${esc(r.start)} – ${esc(r.end)}</bdi></li><li>${esc(r.durAr)} · <span class="numx">1,200</span> د.إ</li></ul><div class="ce-xc-a"><a class="btn btn-primary" href="ce/register/${r.lang}.html?o=${encodeURIComponent(r.id)}#register">سجّل في هذا الموعد</a><a class="ce-xc-hub ext" href="${esc(r.url)}" target="_blank" rel="noopener">في البوابة<span class="sr-only"> (يفتح في نافذة جديدة)</span></a></div></li>`};
     const draw=()=>{drawSegs();journey();const rows=D.rows.filter(r=>match(r)).sort((a,b)=>a.date.localeCompare(b.date)||a.lang.localeCompare(b.lang)||a.track.localeCompare(b.track));
       const shown=rows.slice(0,limit);list.innerHTML=shown.map(card).join('')+(rows.length>limit?`<li class="ce-xc-more"><button type="button" class="btn ce-btn-out">عرض ${Math.min(6,rows.length-limit)} مواعيد أخرى <small class="numx">(${rows.length-limit} متبقٍ)</small></button></li>`:'');
       $('#ce-x-count').textContent=rows.length?`${rows.length} ${rows.length>10?'موعداً':rows.length>2?'مواعيد':rows.length===2?'موعدان':'موعد'} مطابق`:'لا توجد مواعيد مطابقة — جرّب فترة أو مستوى آخر.';
       $('#ce-x-reset').hidden=!(st.lang||st.level||st.track);list.classList.toggle('anim',!calm());
       const more=$('.ce-xc-more button',list);more&&more.addEventListener('click',()=>{const n=limit;limit+=6;draw();const nx=list.children[n];nx&&$('a',nx).focus()})};
-    $('#ce-x-filters').addEventListener('click',e=>{const b=e.target.closest('.ce-chip8');if(!b||b.disabled)return;const k=b.closest('.ce-x-f').dataset.f;st[k]=b.dataset.v;limit=6;draw();const nb=$(`.ce-x-f[data-f="${k}"] .ce-chip8[data-v="${b.dataset.v}"]`);nb&&nb.focus()});
-    $('#ce-x-reset').addEventListener('click',()=>{st.lang=st.level=st.track='';limit=6;draw();$('#ce-x-filters .ce-chip8').focus()});
+    $('#ce-x-filters').addEventListener('click',e=>{const b=e.target.closest('.ce-chip8');if(!b||b.disabled)return;const k=b.closest('.ce-x-f').dataset.f;st[k]=b.dataset.v;limit=3;draw();const nb=$(`.ce-x-f[data-f="${k}"] .ce-chip8[data-v="${b.dataset.v}"]`);nb&&nb.focus()});
+    $('#ce-x-reset').addEventListener('click',()=>{st.lang=st.level=st.track='';limit=3;draw();$('#ce-x-filters .ce-chip8').focus()});
     /* deep links: language cards' secondary action / #explorer-<lang> */
-    const fromHash=()=>{const m=location.hash.match(/^#explorer-(english|french|russian|chinese)$/);if(m){st.lang=m[1];limit=6;draw();$('#explorer').scrollIntoView({behavior:calm()?'auto':'smooth'})}};
+    const fromHash=()=>{const m=location.hash.match(/^#explorer-(english|french|russian|chinese)$/);if(m){st.lang=m[1];limit=3;draw();$('#explorer').scrollIntoView({behavior:calm()?'auto':'smooth'})}};
     addEventListener('hashchange',fromHash);draw();fromHash();
   }
   /* ---------- FAQ ---------- */

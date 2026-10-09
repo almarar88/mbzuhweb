@@ -478,3 +478,4 @@ html.hdr-t1 .brand img{height:36px!important}
 html.hdr-t2 .hdr .tools .btn{display:none!important}
 @media (min-width:1600px){.hdr .container{width:min(100% - 2*var(--gutter),1520px)}}
 @media (min-width:1641px){.search-trigger{width:42px!important;min-width:42px!important;padding:0!important;justify-content:center}.search-trigger .lbl,.search-trigger kbd{display:none!important}.nav a.nl,.nav button.nl{padding:.55rem .7rem}}
+.cec-band .hero-actions .cec-band-reg{position:relative;z-index:3}
