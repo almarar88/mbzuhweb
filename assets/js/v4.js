@@ -54,7 +54,7 @@
     $$('.hero-actions .btn,.btn-primary.big,.xp-cta').forEach(b=>{b.classList.add('magnetic');
       b.addEventListener('pointermove',e=>{if(still())return;const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.28}px)`});
       b.addEventListener('pointerleave',()=>{b.style.transform=''})});
-    $$('[data-tilt],.qa>a,.lgc,.xp-card,.co-card,.clg-card').forEach(c=>{c.setAttribute('data-tilt','');
+    $$('[data-tilt],.qa>a,.lgc:not(.lgc-soon),.xp-card,.co-card,.clg-card').forEach(c=>{c.setAttribute('data-tilt','');
       c.addEventListener('pointermove',e=>{if(still())return;const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`perspective(900px) rotateX(${(-y*7).toFixed(2)}deg) rotateY(${(x*9).toFixed(2)}deg) translateZ(0)`});
       c.addEventListener('pointerleave',()=>{c.style.transform=''})});
   }

@@ -64,8 +64,8 @@
     const cards=$$('.lgc[data-find]',list).map(a=>({a,k:N(a.dataset.find+' '+a.textContent),name:($('.lgc-ar',a)||{}).textContent||''}));
     q.addEventListener('input',()=>{const v=N(q.value);if(!v){list.classList.remove('filtering');cards.forEach(c=>c.a.classList.remove('hit'));st.textContent='';return}
       const hits=cards.filter(c=>c.k.split(/\s+/).some(w=>w.startsWith(v))||c.k.includes(v));list.classList.add('filtering');cards.forEach(c=>c.a.classList.toggle('hit',hits.includes(c)));
-      st.textContent=hits.length?(hits.length===1?`وجدنا: ${hits[0].name} — اضغط Enter لفتح صفحتها`:`${hits.length} لغات مطابقة`):'لا تتوفر هذه اللغة حالياً. اللغات المتاحة: الإنجليزية، الفرنسية، الروسية، الصينية.'});
-    q.addEventListener('keydown',e=>{if(e.key==='Enter'){const h=cards.filter(c=>c.a.classList.contains('hit'));if(h.length===1){e.preventDefault();location.href=h[0].a.href}}});
+      st.textContent=hits.length?(hits.length===1?(hits[0].a.classList.contains('lgc-soon')?`${hits[0].name}: قريباً — لا تتوفر تفاصيل بعد`:`وجدنا: ${hits[0].name} — اضغط Enter لفتح صفحتها`):`${hits.length} لغات مطابقة`):'لا تتوفر هذه اللغة حالياً. اللغات المتاحة الآن: الإنجليزية، الفرنسية، الروسية، الصينية.'});
+    q.addEventListener('keydown',e=>{if(e.key==='Enter'){const h=cards.filter(c=>c.a.classList.contains('hit'));if(h.length===1){e.preventDefault();if(h[0].a.href)location.href=h[0].a.href}}});
   }
   /* ---------- glyph morph on hover/focus ---------- */
   $$('.lgc[data-glyphs]').forEach(a=>{const g=a.dataset.glyphs.split('|'),el=$('.lgc-glyph',a);if(!el||g.length<2)return;let i=0,t=null;

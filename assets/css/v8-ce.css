@@ -308,3 +308,14 @@ html.calm .ce-x-list .ce-xc,html.calm .ce-jr-steps::before,html.calm .ce-jr-step
 [data-theme=dark] .ce-svc svg,[data-theme=dark] .ce-guide-l,[data-theme=dark] .ce-vm-m figcaption,[data-theme=dark] .ce-next-l b,[data-theme=dark] .ce-next-l a,[data-theme=dark] .ce-next-l svg{color:#e8c483}
 [data-theme=dark] .ce-next-l{background:#1b2420;border-color:#2c3833}
 @media (prefers-reduced-motion:reduce){.ce-val{transition:none}}
+
+/* v10 — Spanish: coming soon (no details) */
+.lgcs>li.lgc-soon-li{grid-column:1/-1}
+.lgc.lgc-soon{min-height:0!important;flex-direction:row;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 1.4rem;cursor:default;filter:saturate(.75);opacity:.92;box-shadow:none;border:1px dashed rgb(242 193 78/.45)}
+.lgc.lgc-soon:hover,.lgc.lgc-soon:focus-visible{transform:none;box-shadow:none}
+.lgc-soon .lgc-glyph{font-size:7rem;top:-1.6rem;opacity:.22}
+.lgc-soon .lgc-spec{display:none}
+.lgc-soon .lgc-endo{font-size:1.6rem}
+.lgc-soon-badge{flex:none;display:inline-flex;align-items:center;gap:.4rem;padding:.35rem .9rem;border-radius:999px;background:#f2c14e;color:#2a1306;font-weight:800;font-size:.95rem}
+.lgc-soon-badge::before{content:"";width:.5rem;height:.5rem;border-radius:50%;background:#2a1306;opacity:.7}
+.lgcs.filtering .lgc-soon:not(.hit){opacity:.35}

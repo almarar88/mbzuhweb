@@ -229,7 +229,7 @@ if(fine&&!still()){
   const glow=document.createElement('div');glow.className='v5-glow';glow.setAttribute('aria-hidden','true');document.body.appendChild(glow);
   let gx=0,gy=0,raf=0;addEventListener('pointermove',e=>{gx=e.clientX;gy=e.clientY;if(!raf)raf=requestAnimationFrame(()=>{glow.style.transform=`translate(${gx}px,${gy}px)`;glow.classList.add('on');raf=0})},{passive:true});
   document.addEventListener('pointerleave',()=>glow.classList.remove('on'));
-  document.addEventListener('pointermove',e=>{const c=e.target.closest('.xp-card,.ps-link,.lgc,.qa>a');if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
+  document.addEventListener('pointermove',e=>{const c=e.target.closest('.xp-card,.ps-link,.lgc:not(.lgc-soon),.qa>a');if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
 }
 document.addEventListener('pointerdown',e=>{
   if(still())return;const el=e.target.closest('.btn,.chip,.icon-btn,.ps-opt,.qa>a,.xp-card');if(!el)return;
