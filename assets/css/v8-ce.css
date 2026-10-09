@@ -1,0 +1,94 @@
+/* v8 — CE: content leads; the poster ad becomes a compact side card (desktop) / slim dismissible card (phone);
+   announcements become a compact strip after the programmes. */
+.ce-lay{display:grid;gap:clamp(1.2rem,3vw,2.4rem)}
+.ce-lay-main{min-width:0}
+.ce-side{min-width:0}
+.ce-side-in{position:relative;display:flex;flex-direction:column;gap:.65rem;padding:.85rem;border-radius:22px;background:#fbf7ef;border:1px solid #eadfcb;box-shadow:0 18px 40px -28px rgb(60 40 10/.45)}
+.ce-side-top{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.ce-side .ce-ann-badge{font-size:.78rem;padding:.25rem .65rem}
+.ce-side .ce-ann-badge svg{width:14px;height:14px}
+.ce-side-x{display:grid;place-items:center;width:44px;height:44px;margin:-.4rem;border:0;border-radius:999px;background:none;color:#5c4a2e;cursor:pointer}
+.ce-side-x:hover,.ce-side-x:focus-visible{background:#f0e6d4}
+.ce-side-x svg{width:18px;height:18px}
+.ce-side-media{position:relative;display:block;width:100%;aspect-ratio:4/3;padding:0;border:0;border-radius:16px;overflow:hidden;background:#efe9de;cursor:zoom-in}
+.ce-side-media picture{display:block;width:100%;height:100%}
+.ce-side-media img{width:100%;height:100%!important;object-fit:cover;object-position:50% 6%;border-radius:16px}
+.ce-side-zoom{position:absolute;inset-inline-start:.5rem;bottom:.5rem;display:inline-flex;align-items:center;gap:.3rem;padding:.25rem .6rem;border-radius:999px;background:rgb(20 32 28/.82);color:#fff;font-size:.78rem;font-weight:700}
+.ce-side-zoom svg{width:14px;height:14px}
+.ce-side-b{display:flex;flex-direction:column;gap:.55rem;min-width:0}
+.ce-side-h{margin:0;font-family:var(--display);font-size:1.22rem;line-height:1.3;color:#7a5520;text-wrap:balance}
+.ce-side-lead{margin:-.3rem 0 0;font-size:.9rem;font-weight:600;color:var(--ink)}
+.ce-side-facts{list-style:none;margin:0;padding:0;display:grid;gap:.3rem;font-size:.88rem;font-weight:700;color:var(--ink)}
+.ce-side-facts li{display:flex;align-items:center;gap:.45rem}
+.ce-side-facts svg{flex:0 0 auto;width:16px;height:16px;color:#7a5520}
+.ce-side-deal{gap:.65rem!important;padding:.5rem .7rem!important;border-radius:14px!important;margin:0!important}
+.ce-side-deal p{margin:0;font-size:.82rem;line-height:1.45;color:#fff7e8}
+.ce-side .ce-40{width:46px;height:46px}
+.ce-side .ce-40 circle{stroke-width:11}
+.ce-side .ce-40 b{font-size:.82rem}
+.ce-side .ce-seats{margin:0;font-size:.88rem}
+.ce-side-cta{justify-content:center;min-height:44px;width:100%;font-size:.92rem}
+.ce-side-cta svg{width:16px;height:16px}
+.ce-side-cta.ext::after{display:none}
+.ce-side-q{margin:0;padding:.45rem .6rem;font-size:.8rem;border-radius:12px}
+.ce-side-q svg{width:16px;height:16px}
+.ce-side-src{margin:0;font-size:.74rem;line-height:1.5;color:var(--muted)}
+@media (min-width:1100px){
+  .ce-lay{grid-template-columns:minmax(0,1fr) 300px;align-items:start}
+  .ce-lay-main{grid-column:1;grid-row:1}
+  .ce-side{grid-column:2;grid-row:1;position:sticky;top:calc(var(--hdr-h,76px) + 4.4rem)}
+  .ce-has-side .lgcs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ce-has-side .lgc{min-height:280px}
+  .ce-side-media{aspect-ratio:16/10}
+  .ce-side-lead,.ce-side-src{display:none}
+  .ce-side-in{gap:.55rem}
+  .ce-side-x{display:none}
+}
+@media (min-width:1380px){.ce-lay{grid-template-columns:minmax(0,1fr) 320px}}
+/* phone / tablet / fold: slim, dismissible card above the languages */
+@media (max-width:1099.98px){
+  .ce-side-in{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:center;gap:.75rem;padding:.65rem;padding-inline-end:2.9rem;border-radius:18px}
+  .ce-side-top{position:absolute;top:.35rem;inset-inline-end:.35rem}
+  .ce-side .ce-ann-badge{display:none}
+  .ce-side-x{margin:0}
+  .ce-side-media{aspect-ratio:3/4;border-radius:12px;grid-row:1}
+  .ce-side-media img{border-radius:12px}
+  .ce-side-zoom{inset-inline-start:auto;inset-inline-end:.25rem;bottom:.25rem;padding:.2rem}
+  .ce-side-zoom span{display:none}
+  .ce-side-b{flex-direction:row;flex-wrap:wrap;align-items:center;gap:.3rem .7rem}
+  .ce-side-h{flex:1 1 100%;font-size:1.02rem}
+  .ce-side-lead,.ce-side-deal,.ce-side-q,.ce-side-src{display:none!important}
+  .ce-side-facts{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:.1rem .7rem;font-size:.8rem;font-weight:600}
+  .ce-side-facts svg{display:none}
+  .ce-side-facts li+li::before{content:"·";margin-inline-end:.45rem;color:#7a5520}
+  .ce-side .ce-seats{font-size:.8rem}
+  .ce-side-cta{width:auto;min-height:44px;padding:.3rem .95rem;font-size:.85rem}
+  .ce-side.off{display:none}
+  .ce-has-side .ce-lay{gap:1.4rem}
+}
+@media (max-width:380px){.ce-side-in{grid-template-columns:64px minmax(0,1fr)}.ce-side .ce-seats{display:none}}
+/* compact announcements strip */
+.ce-strip{padding-block:clamp(1.6rem,3.5vw,2.4rem);border-block:1px solid var(--line)}
+.ce-strip .ce-board-bar{margin-bottom:.6rem}
+.ce-strip .ce-board-h{font-size:1.2rem}
+.ce-strip .ce-board{grid-auto-columns:min(100%,460px);gap:.8rem;padding:.2rem .1rem .6rem}
+.ce-strip .ce-card{flex-direction:row;border-radius:16px;box-shadow:none}
+.ce-strip .ce-card:hover{transform:translateY(-2px)}
+.ce-strip .ce-card-media{width:96px;height:auto;flex:0 0 96px;min-height:132px}
+.ce-strip .ce-card-media picture{display:block;height:100%}
+.ce-strip .ce-card-ic svg{width:40px;height:40px}
+.ce-strip .ce-card-b{padding:.7rem .9rem;gap:.3rem}
+.ce-strip .ce-card-tags li{font-size:.72rem}
+.ce-strip .ce-card-b h3{font-size:1rem}
+.ce-strip .ce-card-b p{-webkit-line-clamp:2;font-size:.85rem}
+.ce-strip .ce-card-b small{display:none}
+.ce-strip .ce-card-a{gap:.6rem;margin-top:.15rem}
+.ce-strip .ce-card-a .btn{min-height:44px;padding:.3rem .9rem;font-size:.85rem}
+@media (max-width:560px){.ce-strip .ce-board{grid-auto-columns:90%}.ce-strip .ce-card-media{width:76px;flex-basis:76px}}
+/* dark */
+[data-theme=dark] .ce-side-in{background:#1b2420;border-color:#2c3833}
+[data-theme=dark] .ce-side-h{color:#e8c483}
+[data-theme=dark] .ce-side-facts svg,[data-theme=dark] .ce-side-facts li+li::before{color:#e8c483}
+[data-theme=dark] .ce-side-x{color:#e9dfcc}
+[data-theme=dark] .ce-side-x:hover{background:#26322d}
+@media (prefers-reduced-motion:reduce){.ce-strip .ce-card,.ce-side-media img{transition:none}}
