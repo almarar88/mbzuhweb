@@ -205,3 +205,4 @@ html.calm .ce-40-arc{transition:none}
 [data-theme=dark] .rg-ann-b small,[data-theme=dark] .rg-ann-b b,[data-theme=dark] .rg-ann-go{color:#f0c886}
 @media (max-width:600px){.rg-ann{grid-template-columns:auto minmax(0,1fr)}.rg-ann-go{grid-column:2}.rg-ann img{width:52px;height:96px}}
 .ce-card-more{color:#7a5520}[data-theme=dark] .ce-card-more{color:#e8c483}
+.rg-xlink{margin:.6rem 0 0}.rg-xlink a{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;color:#f3d9a6;font-weight:700;text-underline-offset:4px}
