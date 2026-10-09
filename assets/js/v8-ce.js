@@ -51,3 +51,10 @@
     const op=()=>{const d=location.hash&&document.getElementById(location.hash.slice(1));if(d&&d.classList.contains('ce-qa'))d.open=true};addEventListener('hashchange',op);op();
   }
 })();
+/* v8 — hero: nearest upcoming start date (from hub sessions) */
+(function(){const D=window.CE_SESSIONS,el=document.getElementById('ce-next');if(!D||!el)return;
+  const t=new Date();t.setHours(0,0,0,0);const up=D.rows.filter(r=>new Date(r.date+'T00:00:00')>=t).sort((a,b)=>a.date.localeCompare(b.date));if(!up.length)return;
+  const r=up[0],n=Math.round((new Date(r.date+'T00:00:00')-t)/864e5),langs=[...new Set(up.filter(x=>x.date===r.date).map(x=>D.langs[x.lang].ar))].join(' و');
+  const rel=n===0?'اليوم':n===1?'غداً':n===2?'بعد يومين':n<=10?`بعد ${n} أيام`:`بعد ${n} يوماً`;
+  el.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>أقرب بداية: <b>${r.dateAr}</b> (${rel}) — ${langs}، المستوى المبتدئ</span><a href="#explorer">كل المواعيد</a>`;
+  if(r.level!=='Beginner')el.querySelector('span').innerHTML=`أقرب بداية: <b>${r.dateAr}</b> (${rel}) — ${langs}`;el.hidden=false})();

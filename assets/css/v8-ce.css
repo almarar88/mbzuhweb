@@ -243,3 +243,10 @@ html.calm .ce-x-list .ce-xc,html.calm .ce-jr-steps::before,html.calm .ce-jr-step
   .ce-path-t b{font-size:.94rem;line-height:1.35}
 }
 [data-theme=dark] .ce-chip8[aria-pressed=true] small{background:rgb(0 0 0/.14);color:#14201c}
+.ce-next{display:inline-flex;flex-wrap:wrap;align-items:center;gap:.4rem .6rem;margin:.7rem 0 0;padding:.45rem .9rem;border-radius:14px;background:rgb(255 255 255/.1);border:1px solid rgb(255 255 255/.22);color:#fff;font-size:.9rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ce-next svg{width:16px;height:16px;color:#f3d9a6}
+.ce-next b{color:#f3d9a6}
+.ce-next a{display:inline-flex;align-items:center;min-height:44px;margin-block:-.6rem;color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:4px}
+.ce-next[hidden]{display:none}
+@media (max-width:560px){.ce-next{font-size:.84rem}}
+[data-theme=dark] .ce-subnav{background:rgb(16 23 20/.94)}
