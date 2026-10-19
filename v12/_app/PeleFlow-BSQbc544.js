@@ -1,0 +1,6 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["_app/lazy-B5eozAnl.js","_app/site-DAx2JdKP.js","_app/jsx-runtime-DyZJNswf.js","_app/site-VmhtUu-q.css"])))=>i.map(i=>d[i]);
+import{i as e,n as t,t as n}from"./jsx-runtime-DyZJNswf.js";import{t as r}from"./site-DAx2JdKP.js";var i=e(t(),1),a=n();function o({steps:e}){let t=(0,i.useRef)(null);return(0,i.useEffect)(()=>{let n,i=!1,a=e.map((e,t)=>String.fromCharCode(65+t)),o=`flowchart TB
+`+e.map((e,t)=>`  ${a[t]}[${e.replace(/[\[\]{}()|]/g,` `)}]`).join(`
+`)+`
+`+a.slice(1).map((e,t)=>`  ${a[t]} --> ${e}`).join(`
+`);return r(async()=>{let{mountAsync:e}=await import(`./lazy-B5eozAnl.js`);return{mountAsync:e}},__vite__mapDeps([0,1,2,3])).then(({mountAsync:e})=>!i&&t.current&&e(t.current,o,{fontFamily:`IBM Plex Sans Arabic, sans-serif`,fontSize:14,responsive:!0,zoom:!1}).then(e=>{n=e})).catch(()=>{}),()=>{i=!0,n?.destroy?.()}},[]),(0,a.jsx)(`div`,{ref:t,className:`pele-host pele-dark`,role:`img`,"aria-label":`خطوات القبول: `+e.join(`، ثم `)})}export{o as default};
