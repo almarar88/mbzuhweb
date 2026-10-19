@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-Wy9s6hX0.js";import{t}from"./Body-DB811Mtk.js";import{r as n}from"./Heroes2-BzUGDo1G.js";var r=e();function i({data:e,onReady:i}){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{h:e.hero}),(0,r.jsx)(t,{data:e,onReady:i})]})}export{i as default};

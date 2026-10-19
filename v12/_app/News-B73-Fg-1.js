@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-Wy9s6hX0.js";import{t}from"./Body-DB811Mtk.js";import{i as n,r}from"./Heroes4-BQXvp5V1.js";var i=e();function a({data:e,onReady:a}){return(0,i.jsxs)(i.Fragment,{children:[e.route.startsWith(`news/`)?(0,i.jsx)(r,{h:e.hero}):(0,i.jsx)(n,{h:e.hero}),(0,i.jsx)(t,{data:e,onReady:a})]})}export{a as default};

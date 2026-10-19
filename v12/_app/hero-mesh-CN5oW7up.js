@@ -1,0 +1,23 @@
+import{a as e,n as t,t as n}from"./jsx-runtime-Wy9s6hX0.js";import{n as r}from"./react-yhruEsAe.js";var i=e(t(),1),a={mesh:`_mesh_10o22_2`,canvas:`_canvas_10o22_3`},o=n(),s=20,c=.075,l=.08,u=8,d=1e3/30,f=`attribute vec2 a; void main() { gl_Position = vec4(a, 0.0, 1.0); }`,p=`
+precision mediump float;
+uniform vec2 uRes;
+uniform vec3 uBase;
+uniform vec4 uP[${u}];
+uniform vec3 uC[${u}];
+uniform int uN;
+uniform float uGrain;
+float hash(vec2 p) { vec3 q = fract(vec3(p.xyx) * .1031); q += dot(q, q.yzx + 33.33); return fract((q.x + q.y) * q.z); }
+void main() {
+  vec2 uv = vec2(gl_FragCoord.x / uRes.x, 1.0 - gl_FragCoord.y / uRes.y);
+  vec3 col = uBase;
+  for (int i = 0; i < ${u}; i++) {
+    if (i >= uN) break;
+    vec4 p = uP[i];
+    float d = length((uv - p.xy) / max(p.z, 1e-4));
+    col = mix(col, uC[i], 1.0 - smoothstep(0.0, 1.0, d));
+  }
+  float n = hash(floor(gl_FragCoord.xy)) + hash(floor(gl_FragCoord.xy) + 19.19) - 1.0;
+  float lum = dot(col, vec3(.2126, .7152, .0722));
+  col += n * (uGrain * .1 * (.55 + 1.8 * lum * (1.0 - lum)) + .6 / 255.0);
+  gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+}`;function m(e){let t=2166136261;for(let n=0;n<e.length;n++)t^=e.charCodeAt(n),t=Math.imul(t,16777619);return t>>>0}var h=[`uRes`,`uBase`,`uP`,`uC`,`uN`,`uGrain`];function g(e,t){t.clearRect(0,0,1,1),t.fillStyle=`#000`,t.fillStyle=e,t.fillRect(0,0,1,1);let[n=0,r=0,i=0]=t.getImageData(0,0,1,1).data;return[n/255,r/255,i/255]}function _(e){let t=[0,.2,.4,.6,.8,1].map(e=>[e,Math.round((1-e*e*(3-2*e))*100)]);return{backgroundColor:`var(--mesh-base)`,backgroundImage:e.map((e,n)=>`radial-gradient(ellipse ${e.spread*100}% ${e.spread*100}% at ${e.x*100}% ${e.y*100}%, ${t.map(([e,t])=>`color-mix(in srgb, var(--mesh-${n+1}) ${t}%, transparent) ${e*100}%`).join(`, `)})`).reverse().join(`, `)}}function v({points:e,grain:t=.35,speed:n=1,className:v,style:y}){let b=(0,i.useRef)(null),x=(0,i.useRef)(null),S=!!r(),C=JSON.stringify(e);return(0,i.useEffect)(()=>{let e=b.current,r=x.current;if(!e||!r)return;let i=r.getContext(`webgl`,{alpha:!1,antialias:!1,depth:!1,stencil:!1,powerPreference:`low-power`}),a=document.createElement(`canvas`).getContext(`2d`,{willReadFrequently:!0});if(!i||!a)return;let o=(e,t)=>{let n=i.createShader(e);return i.shaderSource(n,t),i.compileShader(n),n},_=i.createProgram();if(i.attachShader(_,o(i.VERTEX_SHADER,f)),i.attachShader(_,o(i.FRAGMENT_SHADER,p)),i.linkProgram(_),!i.getProgramParameter(_,i.LINK_STATUS))return;i.useProgram(_),i.bindBuffer(i.ARRAY_BUFFER,i.createBuffer()),i.bufferData(i.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),i.STATIC_DRAW);let v=i.getAttribLocation(_,`a`);i.enableVertexAttribArray(v),i.vertexAttribPointer(v,2,i.FLOAT,!1,0,0);let y=Object.fromEntries(h.map(e=>[e,i.getUniformLocation(_,e)])),w=JSON.parse(C).slice(0,u),T=w.map((e,t)=>{let n=m(`mesh-${t}`);return{ph1:n%628/100,ph2:(n>>>10)%628/100,k1:1+(n>>>20)%2,k2:1+(n>>>22)%2}}),E=new Float32Array(32),D=new Float32Array(24),O=[1,1,1],k=()=>{let t=getComputedStyle(e);O=g(t.getPropertyValue(`--mesh-base`).trim()||`#fff`,a),w.forEach((e,n)=>{let r=g(t.getPropertyValue(`--mesh-${n+1}`).trim()||`#fff`,a);D.set(r,n*3)})},A=0,j=0,M=()=>{A=Math.max(1,Math.round(e.clientWidth)),j=Math.max(1,Math.round(e.clientHeight)),r.width=A,r.height=j},N=m(C)%s,P=()=>{let n=2*Math.PI*N/s;w.forEach((e,t)=>{let r=T[t];E[t*4]=e.x+c*Math.sin(n*r.k1+r.ph1),E[t*4+1]=e.y+c*Math.cos(n*r.k2+r.ph2),E[t*4+2]=e.spread*(1+l*Math.sin(n+r.ph1*.7))}),i.viewport(0,0,A,j),i.uniform2f(y.uRes,A,j),i.uniform3f(y.uBase,O[0],O[1],O[2]),i.uniform4fv(y.uP,E),i.uniform3fv(y.uC,D),i.uniform1i(y.uN,w.length),i.uniform1f(y.uGrain,t),i.drawArrays(i.TRIANGLES,0,3),e.dataset.painted=``};k(),M(),P();let F=!S&&n>0,I=!1,L=0,R=0,z=e=>{if(L=requestAnimationFrame(z),e-R<d)return;let t=R?Math.min(.1,(e-R)/1e3):0;R=e,N=(N+t*n)%s,P()},B=()=>{let e=F&&I&&document.visibilityState===`visible`;e&&!L&&(R=0,L=requestAnimationFrame(z)),!e&&L&&(cancelAnimationFrame(L),L=0)},V=new IntersectionObserver(([e])=>{e&&(I=e.isIntersecting,B())});V.observe(e);let H=new ResizeObserver(()=>{M(),P()});H.observe(e);let U=()=>{k(),P()},W=new MutationObserver(U);W.observe(document.documentElement,{attributes:!0,attributeFilter:[`data-theme`,`data-accent`,`class`]});let G=matchMedia(`(prefers-color-scheme: dark)`);return G.addEventListener(`change`,U),document.addEventListener(`visibilitychange`,B),()=>{cancelAnimationFrame(L),V.disconnect(),H.disconnect(),W.disconnect(),G.removeEventListener(`change`,U),document.removeEventListener(`visibilitychange`,B),delete e.dataset.painted}},[C,t,n,S]),(0,o.jsx)(`div`,{ref:b,className:[a.mesh,v].filter(Boolean).join(` `),style:{..._(e),...y},"aria-hidden":`true`,children:(0,o.jsx)(`canvas`,{ref:x,className:a.canvas})})}export{v as t};
