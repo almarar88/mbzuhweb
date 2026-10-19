@@ -1,0 +1,182 @@
+/* =====================================================================
+   v11 — Continuing Education page redesign layer (loaded after v8-ce.css)
+   Scope: [data-v11] on <body> of continuous-education.html only.
+   Ideas re-implemented in vanilla CSS (no framework):
+     • Neon Edge Button / LockInput focus / UnfoldAccordion / Gooey Menu — easyui.site
+     • Gauge strip — gauge-ui.dev        • Themeable SVG flow diagram — pele.run
+     • Glass + bento, aurora mesh — uiarc.dev   • LED level meters, theme chips — audiocn.dev
+     • Hand-drawn heading underline — squig.sh  • Callout block — mdxcn.dev
+     • Duotone line-icon tiles — encyclopedia.iconography.co
+   All motion is disabled under prefers-reduced-motion.
+   ===================================================================== */
+@property --na{syntax:'<angle>';initial-value:0deg;inherits:false}
+[data-v11]{--v-gold:#b8863b;--v-gold-d:#7a5520;--v-gold-l:#e0b26a;--v-em:#1d6152;--v-ink:#14201c;
+  --v-glass:rgb(255 255 255/.66);--v-glass-line:rgb(255 255 255/.7);--v-card-line:#eadfca;--v-r:26px;
+  --v-shadow:0 24px 60px -34px rgb(60 40 10/.45)}
+[data-theme=dark][data-v11],[data-theme=dark] [data-v11]{--v-glass:rgb(21 29 26/.72);--v-glass-line:rgb(255 255 255/.08);--v-card-line:#2a3631;--v-shadow:0 24px 60px -30px rgb(0 0 0/.7)}
+@keyframes v11na{to{--na:360deg}}
+
+/* ---------- 1. Hero: aurora mesh + glass bento (uiarc) ---------- */
+.v11-aurora{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;mix-blend-mode:screen;opacity:.55}
+.v11-aurora i{position:absolute;width:46vmax;height:46vmax;border-radius:50%;filter:blur(70px);opacity:.5;animation:v11drift 22s ease-in-out infinite alternate}
+.v11-aurora i:nth-child(1){background:#c9963f;top:-18vmax;inset-inline-end:-10vmax}
+.v11-aurora i:nth-child(2){background:#1d6152;bottom:-22vmax;inset-inline-start:-12vmax;animation-delay:-7s}
+.v11-aurora i:nth-child(3){background:#6e2f5c;top:20%;inset-inline-start:30%;width:30vmax;height:30vmax;opacity:.28;animation-delay:-13s}
+@keyframes v11drift{to{transform:translate3d(6vmax,4vmax,0) scale(1.15)}}
+.v11-hb{list-style:none;margin:1.3rem 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.6rem;max-width:660px}
+.v11-hb a{display:grid;gap:.15rem;height:100%;padding:.8rem .9rem;border-radius:18px;text-decoration:none;color:#fff;
+  background:rgb(255 255 255/.09);border:1px solid rgb(255 255 255/.22);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);
+  transition:transform .3s var(--ease-out),background .3s,border-color .3s}
+.v11-hb a:hover,.v11-hb a:focus-visible{transform:translateY(-3px);background:rgb(255 255 255/.16);border-color:rgb(243 217 166/.6)}
+.v11-hb b{font-size:1.55rem;line-height:1.1;color:#f3d9a6;font-weight:800}
+.v11-hb span{font-size:.86rem;color:#f1ede5;font-weight:600}
+@media (max-width:700px){.v11-hb{grid-template-columns:repeat(2,minmax(0,1fr))}.v11-hb b{font-size:1.3rem}}
+
+/* ---------- 2. Neon Edge Button (easyui) — every «قم بالتسجيل» CTA ---------- */
+[data-v11] :is(a.btn,a.ce-subnav-cta)[href="https://hub.mbzuh.ac.ae/cec"]{position:relative;isolation:isolate;box-shadow:0 0 0 1px rgb(224 178 106/.35),0 12px 32px -14px rgb(224 178 106/.9);transition:box-shadow .3s,transform .3s}
+[data-v11] :is(a.btn,a.ce-subnav-cta)[href="https://hub.mbzuh.ac.ae/cec"]::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;pointer-events:none;z-index:1;
+  background:conic-gradient(from var(--na),transparent 0 58%,#fff4cf 70%,#e0b26a 80%,#c9963f 86%,transparent 96%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:v11na 3.2s linear infinite}
+[data-v11] :is(a.btn,a.ce-subnav-cta)[href="https://hub.mbzuh.ac.ae/cec"]:hover{box-shadow:0 0 0 1px rgb(243 217 166/.7),0 0 26px -2px rgb(224 178 106/.75),0 16px 40px -14px rgb(224 178 106/.9)}
+
+/* ---------- 3. Section titles: hand-drawn squiggle (squig.sh) ---------- */
+[data-v11] main :is(.sec-head h2,#about-h,#start-h,#faq-h){position:relative}
+[data-v11] main :is(.sec-head h2,#about-h,#start-h,#faq-h)::after{content:"";display:block;width:140px;height:14px;margin-top:.45rem;background:none;border:0;position:static;
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 14'%3E%3Cpath d='M2 9c10-6 18 4 28-1s17-6 27 0 18 5 28-1 17-5 27 0 15 4 26-2' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 14'%3E%3Cpath d='M2 9c10-6 18 4 28-1s17-6 27 0 18 5 28-1 17-5 27 0 15 4 26-2' fill='none' stroke='%23000' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%;
+  background-color:var(--v-gold)}
+
+/* ---------- 4. Intro as glass bento (uiarc) ---------- */
+[data-v11] .ce-intro{background:radial-gradient(60% 50% at 100% 0,rgb(201 150 63/.13),transparent 70%),radial-gradient(50% 40% at 0 30%,rgb(29 97 82/.10),transparent 70%),var(--bg)}
+[data-v11] .ce-intro-top{gap:1rem}
+[data-v11] .ce-intro-who{padding:clamp(1.2rem,3vw,2rem);border-radius:var(--v-r);background:var(--v-glass);border:1px solid var(--v-glass-line);box-shadow:var(--v-shadow);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+[data-v11] .ce-vm{display:grid;gap:1rem;align-content:start}
+[data-v11] .ce-vm figure{border-radius:var(--v-r)}
+[data-v11] .ce-intro .ce-val{border-radius:22px;background:var(--v-glass);border:1px solid var(--v-glass-line);box-shadow:var(--v-shadow);transition:transform .35s var(--ease-out)}
+[data-v11] .ce-intro .ce-val:hover{transform:translateY(-4px)}
+/* duotone line-icon tiles (iconography) */
+[data-v11] :is(.ce-val .ico,.ce-path-ic,.cx-ic,.cx-step .ico){border-radius:14px;box-shadow:inset 0 0 0 1px rgb(184 134 59/.28),0 6px 16px -10px rgb(122 85 32/.6)}
+[data-v11] :is(.ce-val .ico,.ce-path-ic,.cx-ic,.cx-step .ico) svg{stroke-width:1.6}
+
+/* ---------- 5. Gauge strip (gauge-ui) ---------- */
+[data-v11] .ce-stats .v11-gauge{display:grid;grid-template-areas:"g" "l";justify-items:center;text-align:center;gap:.35rem;padding:1rem .6rem 1.1rem;transition:transform .35s var(--ease-out),background .35s}
+[data-v11] .ce-stats .v11-gauge:hover{transform:translateY(-4px)}
+.v11-g{grid-area:g;width:min(132px,100%);height:auto;overflow:visible}
+.v11-gauge>b.numx{grid-area:g;align-self:center;margin-top:.4rem;font-size:clamp(1.35rem,1rem + 1vw,1.85rem);line-height:1}
+.v11-gauge>span{grid-area:l}
+.v11-g circle{fill:none;stroke-width:8;stroke-linecap:round}
+.v11-g-bg{stroke:rgb(255 255 255/.13)}
+.v11-g-v{stroke:var(--v-gold-l);transition:stroke-dasharray 1.8s cubic-bezier(.2,.8,.2,1);filter:drop-shadow(0 0 6px rgb(224 178 106/.55))}
+.v11-g-v.v11-g-dec{stroke:rgb(224 178 106/.5);filter:none}
+.v11-g-t line{stroke:rgb(255 255 255/.28);stroke-width:1.4;stroke-linecap:round}
+.v11-gauge.g-on .v11-g-v{stroke-dasharray:var(--len) var(--c)}
+.v11-gauge[data-real] .v11-g-t line{stroke:rgb(243 217 166/.5)}
+
+/* ---------- 6. Learning-path diagram, themeable via CSS variables (pele.run) ---------- */
+.pn{margin:0 0 1.6rem;padding:1rem clamp(.8rem,2vw,1.4rem) 1.1rem;border-radius:28px;background:var(--pn-bg);border:1px solid var(--pn-line);box-shadow:var(--v-shadow);
+  --pn-bg:#fbf6ec;--pn-line:#eadfca;--pn-node:#fff;--pn-stroke:#b8863b;--pn-ink:#14201c;--pn-sub:#5b4a2c;--pn-edge:#b8863b;--pn-go:#7a5520;--pn-go-ink:#fff;--pn-d:#f3e8d6;--pn-cap:#14201c}
+.pn[data-pt=emerald]{--pn-bg:#eef5f1;--pn-line:#cfe2d8;--pn-node:#fff;--pn-stroke:#1d6152;--pn-ink:#10261f;--pn-sub:#2f5246;--pn-edge:#1d6152;--pn-go:#1d6152;--pn-go-ink:#fff;--pn-d:#dcebe3;--pn-cap:#10261f}
+.pn[data-pt=night],[data-theme=dark] .pn{--pn-bg:#101815;--pn-line:#24312c;--pn-node:#18231f;--pn-stroke:#e0b26a;--pn-ink:#f1ede5;--pn-sub:#cfc8ba;--pn-edge:#e0b26a;--pn-go:#e0b26a;--pn-go-ink:#14201c;--pn-d:#22302a;--pn-cap:#f1ede5}
+[data-theme=dark] .pn[data-pt=emerald]{--pn-stroke:#7fc8ad;--pn-edge:#7fc8ad;--pn-go:#7fc8ad}
+.pn-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6rem;margin-bottom:.4rem}
+.pn figcaption{font-weight:800;color:var(--pn-cap);font-size:1.02rem}
+.pn-themes{display:flex;gap:.35rem;flex-wrap:wrap}
+.pn-themes button{display:inline-flex;align-items:center;gap:.4rem;min-height:36px;padding:.3rem .75rem;border-radius:999px;border:1px solid var(--pn-line);background:var(--pn-node);color:var(--pn-ink);font:600 .85rem var(--font);cursor:pointer}
+.pn-themes button i{width:14px;height:14px;border-radius:50%;background:var(--sw);box-shadow:0 0 0 2px var(--pn-node),0 0 0 3px var(--pn-line)}
+.pn-themes button[aria-pressed=true]{border-color:var(--pn-stroke);box-shadow:0 0 0 2px color-mix(in srgb,var(--pn-stroke) 30%,transparent)}
+.pn-canvas{overflow:hidden}
+.pn-svg{display:block;width:100%;height:auto;font-family:var(--font)}
+.pn-v{display:none;max-width:420px;margin-inline:auto}
+@media (max-width:900px){.pn-h{display:none}.pn-v{display:block}}
+.pn-svg text{direction:rtl;text-anchor:middle;fill:var(--pn-ink)}
+.pn-t1{font-size:17px;font-weight:800}.pn-t2{font-size:13px;font-weight:600;fill:var(--pn-sub)!important}
+.pn-lbl{font-size:13px;font-weight:700;fill:var(--pn-sub)!important}
+.pn-n rect{fill:var(--pn-node);stroke:var(--pn-stroke);stroke-width:1.6;transition:stroke-width .25s,transform .3s}
+.pn-n:hover rect{stroke-width:3}
+.pn-go rect{fill:var(--pn-go);stroke:none}
+.pn-go text,.pn-go .pn-t2{fill:var(--pn-go-ink)!important}
+.pn-go rect{filter:drop-shadow(0 8px 18px color-mix(in srgb,var(--pn-go) 55%,transparent))}
+.pn-d path{fill:var(--pn-d);stroke:var(--pn-stroke);stroke-width:1.6;stroke-dasharray:5 4}
+.pn-e path{fill:none;stroke:var(--pn-edge);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:7 7;animation:v11flow 1.4s linear infinite}
+@keyframes v11flow{to{stroke-dashoffset:-28}}
+.pn-note{margin:.5rem 0 0;font-size:.9rem;font-weight:700;color:var(--pn-sub);text-align:center}
+
+/* ---------- 7. LockInput-style focus state for every finder (easyui) ---------- */
+[data-v11] :is(.ce-find,.cx-search,.ce-faq-find){position:relative;transition:transform .3s var(--ease-out),box-shadow .3s}
+[data-v11] :is(.ce-find,.cx-search,.ce-faq-find):focus-within{transform:translateY(-2px);box-shadow:0 0 0 4px rgb(184 134 59/.18),0 18px 40px -22px rgb(122 85 32/.7)}
+[data-v11] :is(.ce-find,.cx-search,.ce-faq-find)::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:conic-gradient(from var(--na),#b8863b,#1d6152,#e0b26a,#b8863b);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:v11na 4s linear infinite}
+[data-v11] :is(.ce-find,.cx-search,.ce-faq-find):focus-within::before{opacity:1}
+[data-v11] :is(.ce-find,.cx-search,.ce-faq-find):focus-within svg{color:var(--v-gold-d);transform:rotate(-12deg) scale(1.1);transition:transform .3s}
+[data-theme=dark] [data-v11] :is(.ce-find,.cx-search,.ce-faq-find):focus-within svg,[data-theme=dark][data-v11] :is(.ce-find,.cx-search,.ce-faq-find):focus-within svg{color:var(--v-gold-l)}
+
+/* ---------- 8. Programmes: glass bento grid ---------- */
+[data-v11] #catalog{background:linear-gradient(180deg,var(--surface-2),var(--bg))}
+[data-v11] .cx-grid{grid-auto-flow:dense}
+@media (min-width:1024px){[data-v11] .cx-grid>.cx-course:nth-child(11n+1){grid-column:span 2}[data-v11] .cx-grid>.cx-course:nth-child(11n+1) .cx-name{font-size:1.25rem}}
+[data-v11] .cx-card{border-radius:22px;transition:transform .35s var(--ease-out),box-shadow .35s,border-color .35s}
+[data-v11] .cx-card:hover{transform:translateY(-4px);border-color:rgb(184 134 59/.55)}
+
+/* ---------- 9. Languages: LED level meters (audiocn) ---------- */
+[data-v11] .lgc-path i::before{content:"";display:inline-block;width:11px;height:10px;margin-inline-end:.35rem;vertical-align:-1px;border-radius:2px;
+  background:linear-gradient(90deg,var(--la) 0 3px,transparent 3px 4px,var(--led2,rgb(255 255 255/.25)) 4px 7px,transparent 7px 8px,var(--led3,rgb(255 255 255/.25)) 8px 11px)}
+[data-v11] .lgc-path i:nth-child(2){--led2:var(--la)}
+[data-v11] .lgc-path i:nth-child(3){--led2:var(--la);--led3:var(--la)}
+[data-v11] .lgc:not(.lgc-soon):hover .lgc-path i::before{animation:v11led .9s steps(3) infinite}
+@keyframes v11led{50%{filter:brightness(1.6)}}
+
+/* ---------- 10. Callout for the quorum clause (mdxcn) ---------- */
+[data-v11] .ce-quorum{position:relative;border-radius:16px;border:1px solid #d9c49b;border-inline-start:4px solid var(--v-gold);background:#fffaf0;color:var(--v-ink)}
+[data-theme=dark] [data-v11] .ce-quorum,[data-theme=dark][data-v11] .ce-quorum{background:#1d1a12;border-color:#4a3c22;border-inline-start-color:var(--v-gold-l);color:#f1ede5}
+
+/* ---------- 11. FAQ: UnfoldAccordion (easyui) ---------- */
+[data-v11] .ce-qa{border-radius:18px;transition:box-shadow .3s,border-color .3s}
+[data-v11] .ce-qa[open]{box-shadow:var(--v-shadow);border-color:rgb(184 134 59/.45)}
+[data-v11] .ce-qa[open] .ce-qa-a{transform-origin:50% 0;animation:v11unfold .55s cubic-bezier(.2,.8,.2,1) both}
+@keyframes v11unfold{from{transform:perspective(800px) rotateX(-72deg) translateY(-6px)}to{transform:none}}
+@supports selector(::details-content){
+  [data-v11]{interpolate-size:allow-keywords}
+  [data-v11] .ce-qa::details-content{block-size:0;overflow:clip;transition:block-size .45s cubic-bezier(.2,.8,.2,1),content-visibility .45s allow-discrete}
+  [data-v11] .ce-qa[open]::details-content{block-size:auto}
+}
+
+/* ---------- 12. Gooey quick menu (easyui) ---------- */
+.v11-goo{position:fixed;z-index:245;inset-inline-start:calc(1.2rem + env(safe-area-inset-left));bottom:calc(1.2rem + 60px + env(safe-area-inset-bottom));width:52px;height:52px}
+.v11-goo-f{position:absolute}
+.v11-goo-blobs{position:absolute;inset:0;filter:url(#v11-goo);pointer-events:none}
+.v11-goo-blobs i{position:absolute;inset:4px;border-radius:50%;background:var(--v-gold-d);transition:transform .5s cubic-bezier(.3,1.5,.5,1);transition-delay:calc(var(--k,0)*35ms)}
+.v11-goo-blobs i.m{inset:0;background:linear-gradient(135deg,#9a6f2c,#7a5520)}
+.v11-goo.open .v11-goo-blobs i:not(.m){transform:translateY(calc(var(--k)*-56px))}
+.v11-goo ul{list-style:none;margin:0;padding:0;position:absolute;inset:0}
+.v11-goo li{position:absolute;inset:4px;transition:transform .5s cubic-bezier(.3,1.5,.5,1),opacity .3s,visibility .3s;transition-delay:calc(var(--k)*35ms);opacity:0;visibility:hidden}
+.v11-goo.open li{transform:translateY(calc(var(--k)*-56px));opacity:1;visibility:visible}
+.v11-goo li a{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;color:#fff;text-decoration:none}
+.v11-goo li a svg{width:21px;height:21px}
+.v11-goo li a span:not(.sr-only){position:absolute;inset-inline-start:calc(100% + 10px);top:50%;transform:translateY(-50%);white-space:nowrap;padding:.3rem .7rem;border-radius:999px;background:#14201c;color:#fff;font:700 .85rem var(--font);box-shadow:0 8px 20px -8px rgb(0 0 0/.5)}
+.v11-goo li a.v11-goo-reg span:not(.sr-only){background:#e0b26a;color:#14201c}
+.v11-goo li a:focus-visible{outline:3px solid #f3d9a6;outline-offset:2px}
+.v11-goo-b{position:absolute;inset:0;border:0;border-radius:50%;background:transparent;color:#fff;cursor:pointer;display:grid;place-items:center}
+.v11-goo-b i{grid-area:1/1;width:20px;height:2.5px;border-radius:2px;background:currentColor;transition:transform .35s var(--ease-out)}
+.v11-goo-b i+i{transform:rotate(90deg)}
+.v11-goo.open .v11-goo-b i{transform:rotate(45deg)}.v11-goo.open .v11-goo-b i+i{transform:rotate(135deg)}
+.v11-goo-b:focus-visible{outline:3px solid #f3d9a6;outline-offset:3px}
+@media print{.v11-goo{display:none}}
+
+/* ---------- 13. Scroll-driven reveals (transform only: never affects colour/contrast) ---------- */
+@media (prefers-reduced-motion:no-preference){@supports (animation-timeline:view()){
+  [data-v11] :is(.cx-grid>.cx-course,.ce-x-list>li,.ce-faq-list>.ce-qa,.lgcs>li,.pn){animation:v11sr linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+  @keyframes v11sr{from{transform:translateY(26px) scale(.98)}to{transform:none}}
+}}
+
+/* ---------- 14. Dark-mode glass surfaces ---------- */
+[data-theme=dark] [data-v11] .ce-intro,[data-theme=dark][data-v11] .ce-intro{background:radial-gradient(60% 50% at 100% 0,rgb(201 150 63/.10),transparent 70%),var(--bg)}
+
+/* ---------- 15. Reduced motion ---------- */
+@media (prefers-reduced-motion:reduce){
+  .v11-aurora i,.pn-e path,[data-v11] :is(a.btn,a.ce-subnav-cta)::before,[data-v11] :is(.ce-find,.cx-search,.ce-faq-find)::before,[data-v11] .ce-qa[open] .ce-qa-a,[data-v11] .lgc-path i::before{animation:none!important}
+  .v11-g-v,.v11-goo li,.v11-goo-blobs i,.v11-hb a{transition:none!important}
+  [data-v11] .ce-qa::details-content{transition:none!important}
+}
+/* gauge size guard: older .cx-stat svg icon rules must not shrink the gauge */
+[data-v11] .ce-stats .v11-gauge svg.v11-g{width:min(132px,100%);height:auto;max-width:none;margin:0;padding:0;background:none;border:0;color:inherit}
+[data-v11] .pn .pn-svg.pn-v{max-width:440px;margin-inline:auto}
