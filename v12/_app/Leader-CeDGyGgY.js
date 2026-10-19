@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DyZJNswf.js";import{t}from"./Body-DVC76vh2.js";import{a as n}from"./Heroes-oxwrO_3R.js";var r=e();function i({data:e,onReady:i}){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{h:e.hero}),(0,r.jsx)(`div`,{className:`v12-letter`,children:(0,r.jsx)(t,{data:e,onReady:i})})]})}export{i as default};
