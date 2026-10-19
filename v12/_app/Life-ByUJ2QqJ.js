@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-DyZJNswf.js";import{t}from"./Body-DWdDMbY0.js";import{r as n}from"./Heroes3-Daupvn_X.js";var r=e();function i({data:e,onReady:i}){return(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)(n,{h:e.hero}),(0,r.jsx)(t,{data:e,onReady:i})]})}export{i as default};
