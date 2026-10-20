@@ -1,0 +1,5 @@
+const __vite__mapDeps=(i,m=__vite__mapDeps,d=(m.f||(m.f=["assets/lazy-CV1p9W6z.js","assets/index-BCri_RmJ.js","assets/jsx-runtime-Wy9s6hX0.js","assets/createLucideIcon-iAjGl61D.js","assets/index-CTyn1suH.css"])))=>i.map(i=>d[i]);
+import{a as e,n as t,t as n}from"./jsx-runtime-Wy9s6hX0.js";import{t as r}from"./index-BCri_RmJ.js";var i=e(t(),1),a=n(),o=`flowchart RL
+  A[اختر البرنامج] --> B[سجّل عبر بوابة المركز]
+  B --> C{اكتمال النصاب: 12 متدرباً؟}
+  C -->|نعم| D([تُعقد الدورة])`;function s(){let e=(0,i.useRef)(null);return(0,i.useEffect)(()=>{let t,n=!1;return r(async()=>{let{mountAsync:e}=await import(`./lazy-CV1p9W6z.js`);return{mountAsync:e}},__vite__mapDeps([0,1,2,3,4])).then(({mountAsync:r})=>{if(!n&&e.current)return r(e.current,o,{fontFamily:`IBM Plex Sans Arabic, sans-serif`,fontSize:15,responsive:!0,autoDirection:!0,directionBreakpoint:640,zoom:!1}).then(e=>{t=e})}).catch(()=>{}),()=>{n=!0,t?.destroy?.()}},[]),(0,a.jsx)(`div`,{ref:e,className:`pele-host mx-auto w-full max-w-[920px]`,role:`img`,"aria-label":`مسار المتدرب: اختر البرنامج، ثم سجّل عبر بوابة المركز، ثم تُعقد الدورة عند اكتمال النصاب بعدد 12 متدرباً.`})}export{s as default};
